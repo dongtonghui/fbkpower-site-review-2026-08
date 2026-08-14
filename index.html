@@ -172,8 +172,24 @@
     text-transform: uppercase;
   }
 </style>
+<link rel="stylesheet" href="shared/lock.css">
+<script src="shared/lock.js"></script>
 </head>
 <body>
+
+<!-- 锁屏 -->
+<div class="lock-overlay" id="lockOverlay">
+  <div class="lock-box">
+    <div class="lock-logo">FBK<span class="dot">·</span>POWER</div>
+    <div class="lock-sub">Private Deck · Enter Passcode</div>
+    <div class="lock-input-row">
+      <input type="password" class="lock-input" id="lockInput" placeholder="••••••" maxlength="10" autocomplete="off" inputmode="numeric">
+      <button class="lock-btn" id="lockBtn">解锁</button>
+    </div>
+    <div class="lock-err" id="lockErr"></div>
+    <div class="lock-hint">内部复盘材料 · 访问需口令</div>
+  </div>
+</div>
 
 <!-- 概览墙 -->
 <div id="overview">
@@ -318,7 +334,47 @@ window.addEventListener("resize", () => {
   if (inOverview) fitCards(); else fit();
 });
 
+/* ---------- 锁屏逻辑 ---------- */
+const LOCK_HASH = "7ac594d7dfea7f2c7125e918b84799b3209bd11ba10830549cb989f30d662811"; // sha256("075632")
+
+function sha256hex(str) {
+  const data = new TextEncoder().encode(str);
+  return crypto.subtle.digest("SHA-256", data).then((buf) =>
+    Array.from(new Uint8Array(buf)).map((b) => b.toString(16).padStart(2, "0")).join("")
+  );
+}
+
+function isUnlocked() {
+  try { return sessionStorage.getItem("fbkdeck_unlocked") === "1"; }
+  catch (e) { return false; }
+}
+
+async function tryUnlock() {
+  const input = document.getElementById("lockInput");
+  const errEl = document.getElementById("lockErr");
+  const val = (input.value || "").trim();
+  if (!val) { errEl.textContent = "请输入口令"; return; }
+  const hash = await sha256hex(val);
+  if (hash === LOCK_HASH) {
+    try { sessionStorage.setItem("fbkdeck_unlocked", "1"); } catch (e) {}
+    document.getElementById("lockOverlay").classList.add("hidden");
+    input.value = "";
+  } else {
+    errEl.textContent = "口令错误 · Access Denied";
+    input.value = "";
+    input.focus();
+  }
+}
+
+document.getElementById("lockBtn").addEventListener("click", tryUnlock);
+document.getElementById("lockInput").addEventListener("keydown", (e) => {
+  if (e.key === "Enter") tryUnlock();
+});
+
 /* ---------- 启动 ---------- */
+if (isUnlocked()) {
+  document.getElementById("lockOverlay").classList.add("hidden");
+}
 showOverview();
 fit();
 </script>

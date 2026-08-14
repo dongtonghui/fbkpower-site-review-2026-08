@@ -1,0 +1,93 @@
+/* ============================================================
+   锁屏样式：工业图纸风 · 深墨底 + 安全橙
+   ============================================================ */
+.lock-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: var(--ink);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-body);
+}
+.lock-overlay.hidden { display: none; }
+.lock-box {
+  background: var(--paper);
+  border: 2px solid var(--safety);
+  padding: 56px 72px;
+  width: 640px;
+  text-align: center;
+  position: relative;
+}
+.lock-box::before,
+.lock-box::after {
+  content: "";
+  position: absolute;
+  width: 26px; height: 26px;
+  border-color: var(--safety);
+  border-style: solid;
+}
+.lock-box::before { top: -6px; left: -6px; border-width: 3px 0 0 3px; }
+.lock-box::after { bottom: -6px; right: -6px; border-width: 0 3px 3px 0; }
+.lock-logo {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 34px;
+  letter-spacing: 0.16em;
+  color: var(--ink);
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+.lock-logo .dot { color: var(--safety); }
+.lock-sub {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  letter-spacing: 0.18em;
+  color: var(--ink-muted);
+  text-transform: uppercase;
+  margin-bottom: 36px;
+}
+.lock-input-row { display: flex; gap: 12px; margin-bottom: 16px; }
+.lock-input {
+  flex: 1;
+  background: #fff;
+  border: 2px solid var(--ink);
+  padding: 14px 18px;
+  font-family: var(--font-mono);
+  font-size: 24px;
+  letter-spacing: 0.3em;
+  color: var(--ink);
+  text-align: center;
+  outline: none;
+}
+.lock-input:focus { border-color: var(--safety); }
+.lock-btn {
+  background: var(--safety);
+  color: #fff;
+  border: 2px solid var(--safety);
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 20px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 12px 30px;
+  cursor: pointer;
+  transition: background .12s;
+}
+.lock-btn:hover { background: var(--safety-dark); }
+.lock-err {
+  font-family: var(--font-mono);
+  font-size: 14px;
+  letter-spacing: 0.1em;
+  color: var(--safety-dark);
+  min-height: 22px;
+  margin-bottom: 12px;
+}
+.lock-hint {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--ink-light);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
