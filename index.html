@@ -63,7 +63,7 @@
   }
   .card {
     background: var(--paper);
-    height: 169px; /* 16:9 */
+    aspect-ratio: 16 / 9;
     border: 2px solid transparent;
     position: relative;
     cursor: pointer;
@@ -72,6 +72,7 @@
   }
   .card:hover { border-color: var(--safety); transform: translateY(-3px); }
   .card iframe {
+    display: block;
     width: 1920px; height: 1080px;
     border: 0;
     transform-origin: 0 0;
@@ -106,8 +107,17 @@
     align-items: center;
     justify-content: center;
   }
-  #frame-wrap { position: relative; }
+  #frame-wrap {
+    position: relative;
+    width: 1920px;
+    height: 1080px;
+    transform-origin: center center;
+    flex-shrink: 0;
+  }
   iframe#frame {
+    display: block;
+    width: 1920px;
+    height: 1080px;
     border: 0;
     background: var(--paper);
     box-shadow: 0 24px 80px rgba(0,0,0,.5);
@@ -238,16 +248,27 @@ DECK_MANIFEST.forEach((item, i) => {
   grid.appendChild(c);
 });
 
-/* ---------- 缩放 ---------- */
+/* ---------- 卡片缩略图缩放 ---------- */
+function fitCards() {
+  document.querySelectorAll(".card").forEach((c) => {
+    const ifr = c.querySelector("iframe");
+    if (!ifr) return;
+    const s = c.clientWidth / SW;
+    ifr.style.transform = "scale(" + s + ")";
+  });
+}
+window.addEventListener("resize", fitCards);
+
+/* ---------- 缩放（演示模式） ---------- */
 function fit() {
-  const pad = 44; // 上下留边
+  const pad = 40;
+  const navH = 86;
   const scale = Math.min(
     (window.innerWidth - 40) / SW,
-    (window.innerHeight - pad - 90) / SH
+    (window.innerHeight - pad - navH) / SH
   );
-  const w = Math.round(SW * scale), h = Math.round(SH * scale);
-  frame.style.width = w + "px";
-  frame.style.height = h + "px";
+  const wrap = document.getElementById("frame-wrap");
+  wrap.style.transform = "scale(" + scale + ")";
 }
 
 /* ---------- 导航 ---------- */
@@ -269,6 +290,7 @@ function showOverview() {
   inOverview = true;
   stage.style.display = "none";
   overview.classList.add("show");
+  fitCards();
 }
 
 document.getElementById("prev").addEventListener("click", () => goTo(index - 1));
@@ -289,7 +311,9 @@ document.addEventListener("keydown", (e) => {
   }
 });
 
-window.addEventListener("resize", () => { if (!inOverview) fit(); });
+window.addEventListener("resize", () => {
+  if (inOverview) fitCards(); else fit();
+});
 
 /* ---------- 启动 ---------- */
 showOverview();
