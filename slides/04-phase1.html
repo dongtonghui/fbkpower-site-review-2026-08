@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>04 · 阶段一 · 基础建站</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;500;600;700&family=Barlow:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../shared/tokens.css">
+</head>
+<body>
+<div class="slide corner-brackets">
+  <div class="page-header">
+    <div class="brand">FBK<span class="dot">·</span>POWER</div>
+    <div class="meta">Phase 1 · Foundation</div>
+  </div>
+
+  <div style="flex:1; padding-top:36px; display:flex; flex-direction:column;">
+    <div class="kicker">Phase 01 · 5月下旬 — 6月中旬</div>
+    <h1>基础建站：从零到可上线</h1>
+    <div class="lead" style="margin-top:16px;">
+      目标不是「好看」，而是 <b>可上线的 B2B 企业站</b>——架构、双语、表单、SEO 地基一次铺好。
+    </div>
+
+    <div class="grid-3" style="margin-top:40px;">
+      <div class="card">
+        <div class="card-tag">架构</div>
+        <h3>Astro 6 静态站</h3>
+        <ul>
+          <li>静态生成 + Vercel 部署流水线</li>
+          <li>核心页面：首页 / 产品列表+详情 / 关于 / 联系 / FAQ / 博客</li>
+          <li>双语架构（6/19）：手动 /zh/ 路由</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-tag">转化</div>
+        <h3>表单系统</h3>
+        <ul>
+          <li>/api/contact + /api/quote 两个 Vercel Function</li>
+          <li>Upstash Redis 存储 + Resend 邮件通知</li>
+          <li>询盘通道首日可用</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-tag orange">SEO</div>
+        <h3>首批地基</h3>
+        <ul>
+          <li>sitemap.xml / robots.txt / canonical</li>
+          <li>结构化数据：Product / Organization / FAQPage</li>
+          <li>3 篇 Pillar + 3 篇 Case Study（6/23）</li>
+          <li>EEAT：作者团队页 + VideoObject + 面包屑</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <div class="section">04 / 16 · Phase 1</div>
+    <div class="pageno"><b>FBK</b> POWER · Retrospective</div>
+  </div>
+</div>
+</body>
+</html>

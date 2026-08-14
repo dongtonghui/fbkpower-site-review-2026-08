@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>06 · 阶段三 · 视觉重设计与信任层</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;500;600;700&family=Barlow:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../shared/tokens.css">
+</head>
+<body>
+<div class="slide corner-brackets">
+  <div class="page-header">
+    <div class="brand">FBK<span class="dot">·</span>POWER</div>
+    <div class="meta">Phase 3 · Redesign</div>
+  </div>
+
+  <div style="flex:1; padding-top:30px; display:flex; flex-direction:column;">
+    <div class="kicker">Phase 03 · 8/4 — 8/10 · ~70 commits / 7 天</div>
+    <h1>视觉重设计：INDUSTRIAL DATASHEET</h1>
+    <div class="lead" style="margin-top:14px;">
+      全站设计语言从「通用模板风」迁移到 <b>工业图纸美学</b>，同时补齐信任层与 SEO 展示层。
+    </div>
+
+    <div class="grid-2" style="margin-top:34px;">
+      <div class="card">
+        <div class="card-tag orange">视觉系统重建</div>
+        <h3>图纸白 v2 设计语言</h3>
+        <ul>
+          <li>Paper <b>#F4F4F0</b> 纸面底 / Ink <b>#14171A</b> 墨色 / 安全橙 <b>#FF6A00</b> 信号色</li>
+          <li>字体：Barlow Condensed 标题大写 + Barlow 正文 + IBM Plex Mono 铭牌数据</li>
+          <li>组件系统：btn / tag / nameplate / hazard-divider / corner-brackets</li>
+          <li>全站按钮统一橙底浅字，清除旧 navy tokens</li>
+          <li>响应式合规：横向溢出修复、触控目标达标、Paper 全屏菜单</li>
+          <li>全部页面（EN + /zh/ 镜像 + guides/case-studies/videos）迁移完成</li>
+        </ul>
+      </div>
+      <div style="display:flex; flex-direction:column; gap:24px;">
+        <div class="card">
+          <div class="card-tag">信任层升级</div>
+          <h3>让 B2B 买家信得过</h3>
+          <ul>
+            <li>1610kW 口径统一、实名伙伴墙、中石化深度合作定位</li>
+            <li>证书页：真实 UL/ETL 扫描件 + PDF 下载 + 结构化数据</li>
+            <li>六大体系证书墙（UL / ETL / CE / ISO9001 / IATF16949 / 五星售后）</li>
+            <li>专利卡片配图（utility + design 专利 CDN 图片）</li>
+          </ul>
+        </div>
+        <div class="card">
+          <div class="card-tag">SEO 展示层修复</div>
+          <h3>解决「有曝光没点击」</h3>
+          <ul>
+            <li>12 英文页 + 2 中文页 Title/Meta 逐页重写（60 / 158 字符控制）</li>
+            <li>66 篇博客补齐合规 metaTitle / metaDescription</li>
+            <li>移除 robots.txt Crawl-delay，不限制抓取频率</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div style="display:flex; gap:18px; margin-top:22px; align-items:center;">
+      <span class="tag">CDN 迁移 → cdn.fbkpower.com</span>
+      <span class="tag">toCDN() / resolveImage()</span>
+      <span class="tag">视频 faststart 重封装</span>
+      <span class="tag orange">22 篇长文补 Key Takeaways</span>
+      <span class="tag orange">3 篇 buyer-journey 文章</span>
+      <span class="tag orange">IndexNow 推送 Bing</span>
+      <span class="tag orange">WhatsApp 全站直聊</span>
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <div class="section">06 / 16 · Phase 3</div>
+    <div class="pageno"><b>FBK</b> POWER · Retrospective</div>
+  </div>
+</div>
+</body>
+</html>

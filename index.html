@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>FBK POWER 独立站复盘 · 2026.05 — 08</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- OG 标签（社交卡片预览） -->
+<meta property="og:title" content="FBK POWER 独立站复盘报告 · 2026.05 — 08" />
+<meta property="og:description" content="210+ 页双语 B2B 工业站复盘：曝光 12 倍增长至周均 3,200+，CTR 卡 0.3%。核心瓶颈：排名深度不足与外部权威信号缺失。" />
+<meta property="og:image" content="https://dongtonghui.github.io/fbkpower-site-review-2026-08/og-preview.jpg" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:type" content="website" />
+<meta property="og:locale" content="zh_CN" />
+<meta name="twitter:card" content="summary_large_image" />
+
+<style>
+  :root {
+    --paper: #F4F4F0;
+    --ink: #14171A;
+    --safety: #FF6A00;
+    --safety-dark: #D95A00;
+    --ink-muted: #5A5F66;
+    --ink-light: #9AA0A6;
+    --line: rgba(20,23,26,0.16);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { width: 100%; height: 100%; overflow: hidden; background: var(--paper); }
+  body { font-family: "Barlow", "PingFang SC", "Microsoft YaHei", sans-serif; }
+
+  /* ---------- 概览墙 ---------- */
+  #overview {
+    position: fixed; inset: 0;
+    display: none;
+    background: var(--ink);
+    z-index: 10;
+    overflow-y: auto;
+    padding: 48px 56px;
+  }
+  #overview.show { display: block; }
+  #overview h2 {
+    font-family: "Barlow Condensed", sans-serif;
+    font-weight: 700;
+    font-size: 34px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--paper);
+    margin-bottom: 6px;
+  }
+  #overview .sub {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 14px;
+    letter-spacing: 0.12em;
+    color: var(--ink-light);
+    text-transform: uppercase;
+    margin-bottom: 30px;
+  }
+  #grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 22px;
+  }
+  .card {
+    background: var(--paper);
+    height: 169px; /* 16:9 */
+    border: 2px solid transparent;
+    position: relative;
+    cursor: pointer;
+    overflow: hidden;
+    transition: border-color .15s, transform .15s;
+  }
+  .card:hover { border-color: var(--safety); transform: translateY(-3px); }
+  .card iframe {
+    width: 1920px; height: 1080px;
+    border: 0;
+    transform-origin: 0 0;
+    pointer-events: none;
+    opacity: .92;
+  }
+  .card .lbl {
+    position: absolute;
+    left: 0; right: 0; bottom: 0;
+    background: linear-gradient(transparent, rgba(20,23,26,.88));
+    color: #fff;
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    padding: 22px 14px 10px;
+    text-transform: uppercase;
+  }
+  #overview .hint {
+    margin-top: 26px;
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 13px;
+    color: var(--ink-light);
+    letter-spacing: 0.08em;
+  }
+  #overview .hint b { color: var(--safety); }
+
+  /* ---------- 演示模式 ---------- */
+  #stage {
+    position: fixed; inset: 0;
+    background: var(--ink);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  #frame-wrap { position: relative; }
+  iframe#frame {
+    border: 0;
+    background: var(--paper);
+    box-shadow: 0 24px 80px rgba(0,0,0,.5);
+  }
+
+  /* 导航控件 */
+  #nav {
+    position: fixed;
+    bottom: 26px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    background: rgba(20,23,26,.92);
+    border: 1px solid rgba(255,255,255,.14);
+    padding: 10px 18px;
+    z-index: 20;
+    backdrop-filter: blur(6px);
+  }
+  #nav button {
+    background: none;
+    border: 1px solid rgba(255,255,255,.25);
+    color: #fff;
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 14px;
+    padding: 6px 16px;
+    cursor: pointer;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    transition: background .12s;
+  }
+  #nav button:hover { background: var(--safety); border-color: var(--safety); }
+  #nav .count {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 14px;
+    color: #fff;
+    letter-spacing: 0.14em;
+    min-width: 90px;
+    text-align: center;
+  }
+  #nav .count b { color: var(--safety); }
+  #nav .gridbtn { border-style: dashed; }
+
+  /* 加载状态 */
+  #stage .loading {
+    position: absolute;
+    font-family: "IBM Plex Mono", monospace;
+    color: var(--ink-light);
+    font-size: 13px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+  }
+</style>
+</head>
+<body>
+
+<!-- 概览墙 -->
+<div id="overview">
+  <h2>FBK POWER · 独立站复盘 2026.05 — 08</h2>
+  <div class="sub">16 Slides · 点击任意卡片进入演示 · Esc 返回概览</div>
+  <div id="grid"></div>
+  <div class="hint">← → 或空格：翻页 &nbsp;·&nbsp; <b>Esc</b>：概览 / 演示切换 &nbsp;·&nbsp; F：全屏</div>
+</div>
+
+<!-- 演示舞台 -->
+<div id="stage">
+  <div class="loading" id="loading">Loading…</div>
+  <div id="frame-wrap">
+    <iframe id="frame" width="1920" height="1080"></iframe>
+  </div>
+  <div id="nav">
+    <button id="prev">← Prev</button>
+    <div class="count"><b id="cur">01</b> / <span id="total">16</span></div>
+    <button id="next">Next →</button>
+    <button class="gridbtn" id="gridbtn">☰ 概览</button>
+  </div>
+</div>
+
+<script>
+/* ====== DECK MANIFEST · 新增/删除 slide 后必须同步 ====== */
+const DECK_MANIFEST = [
+  { file: "slides/01-cover.html",            label: "01 · Cover" },
+  { file: "slides/02-overview.html",         label: "02 · Overview" },
+  { file: "slides/03-timeline.html",         label: "03 · Timeline" },
+  { file: "slides/04-phase1.html",           label: "04 · Phase 1 建站" },
+  { file: "slides/05-phase2.html",           label: "05 · Phase 2 SEO" },
+  { file: "slides/06-phase3.html",           label: "06 · Phase 3 重设计" },
+  { file: "slides/07-phase4.html",           label: "07 · Phase 4 内容" },
+  { file: "slides/08-traffic.html",          label: "08 · Traffic 流量" },
+  { file: "slides/09-pages-regions.html",    label: "09 · Pages & Regions" },
+  { file: "slides/10-gap1.html",             label: "10 · Gap 1 排名深度" },
+  { file: "slides/11-gap2.html",             label: "11 · Gap 2 外链" },
+  { file: "slides/12-gap3.html",             label: "12 · Gap 3 内容深度" },
+  { file: "slides/13-gap45.html",            label: "13 · Gap 4+5 转化/索引" },
+  { file: "slides/14-next.html",             label: "14 · Next Steps" },
+  { file: "slides/15-kpi.html",              label: "15 · KPI Dashboard" },
+  { file: "slides/16-end.html",              label: "16 · End" },
+];
+
+const SW = 1920, SH = 1080; // slide 固定尺寸
+let index = 0;
+let inOverview = true;
+
+const overview = document.getElementById("overview");
+const stage = document.getElementById("stage");
+const frame = document.getElementById("frame");
+const grid = document.getElementById("grid");
+const curEl = document.getElementById("cur");
+const totalEl = document.getElementById("total");
+const loading = document.getElementById("loading");
+
+totalEl.textContent = String(DECK_MANIFEST.length).padStart(2, "0");
+
+/* ---------- 概览墙网格 ---------- */
+DECK_MANIFEST.forEach((item, i) => {
+  const c = document.createElement("div");
+  c.className = "card";
+  const ifr = document.createElement("iframe");
+  ifr.src = item.file;
+  ifr.loading = "lazy";
+  c.appendChild(ifr);
+  const lbl = document.createElement("div");
+  lbl.className = "lbl";
+  lbl.textContent = item.label;
+  c.appendChild(lbl);
+  c.addEventListener("click", () => { goTo(i); showStage(); });
+  grid.appendChild(c);
+});
+
+/* ---------- 缩放 ---------- */
+function fit() {
+  const pad = 44; // 上下留边
+  const scale = Math.min(
+    (window.innerWidth - 40) / SW,
+    (window.innerHeight - pad - 90) / SH
+  );
+  const w = Math.round(SW * scale), h = Math.round(SH * scale);
+  frame.style.width = w + "px";
+  frame.style.height = h + "px";
+}
+
+/* ---------- 导航 ---------- */
+function goTo(i) {
+  index = Math.max(0, Math.min(DECK_MANIFEST.length - 1, i));
+  loading.style.display = "block";
+  frame.src = DECK_MANIFEST[index].file;
+  curEl.textContent = String(index + 1).padStart(2, "0");
+}
+frame.addEventListener("load", () => { loading.style.display = "none"; });
+
+function showStage() {
+  inOverview = false;
+  overview.classList.remove("show");
+  stage.style.display = "flex";
+  fit();
+}
+function showOverview() {
+  inOverview = true;
+  stage.style.display = "none";
+  overview.classList.add("show");
+}
+
+document.getElementById("prev").addEventListener("click", () => goTo(index - 1));
+document.getElementById("next").addEventListener("click", () => goTo(index + 1));
+document.getElementById("gridbtn").addEventListener("click", showOverview);
+
+document.addEventListener("keydown", (e) => {
+  if (e.key === "Escape") { inOverview ? showStage() : showOverview(); return; }
+  if (inOverview) return;
+  if (e.key === "ArrowRight" || e.key === " " || e.key === "PageDown") {
+    e.preventDefault(); goTo(index + 1);
+  }
+  if (e.key === "ArrowLeft" || e.key === "PageUp") { e.preventDefault(); goTo(index - 1); }
+  if (e.key === "Home") { e.preventDefault(); goTo(0); }
+  if (e.key === "End") { e.preventDefault(); goTo(DECK_MANIFEST.length - 1); }
+  if (e.key === "f" || e.key === "F") {
+    document.fullscreenElement ? document.exitFullscreen() : document.documentElement.requestFullscreen();
+  }
+});
+
+window.addEventListener("resize", () => { if (!inOverview) fit(); });
+
+/* ---------- 启动 ---------- */
+showOverview();
+fit();
+</script>
+</body>
+</html>
