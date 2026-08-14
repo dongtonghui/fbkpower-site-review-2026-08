@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>FBK POWER 独立站复盘 · Brand Cover</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;500;600;700&family=Barlow:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../shared/tokens.css">
+<style>
+  .brand-cover { align-items: center; text-align: center; }
+  .logo-wrap {
+    display: flex;
+    justify-content: center;
+    margin-top: 60px;
+  }
+  .logo-wrap img { width: 860px; height: auto; }
+  .cover-title {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 118px;
+    line-height: 1.02;
+    letter-spacing: 0.02em;
+    color: var(--ink);
+    margin-top: 70px;
+    text-transform: uppercase;
+  }
+  .cover-title .hl { color: var(--safety-dark); }
+  .cover-sub {
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-size: 44px;
+    letter-spacing: 0.06em;
+    color: var(--ink-muted);
+    text-transform: uppercase;
+    margin-top: 26px;
+  }
+  .cover-meta {
+    font-family: var(--font-mono);
+    font-size: 16px;
+    letter-spacing: 0.16em;
+    color: var(--ink-light);
+    text-transform: uppercase;
+    margin-top: 56px;
+  }
+</style>
+</head>
+<body>
+<div class="slide corner-brackets brand-cover">
+
+  <!-- 中央 logo -->
+  <div class="logo-wrap">
+    <img src="../assets/fbk-logo-orange.png" alt="FBK POWER">
+  </div>
+
+  <!-- 标题 -->
+  <div class="cover-title">把曝光，变成<span class="hl">订单</span></div>
+  <div class="cover-sub">FBK Power 独立站复盘报告 · 2026.05 — 08</div>
+
+  <div class="hazard-divider" style="width:380px; margin:44px auto 0;"></div>
+
+  <div class="cover-meta">Data · Git Commits + Google Search Console</div>
+</div>
+<div class="page-footer" style="left:110px; right:110px; bottom:34px;">
+  <div class="section">01 / 17 · Cover</div>
+  <div class="pageno"><b>FBK</b> POWER · Retrospective</div>
+</div>
+</body>
+</html>
