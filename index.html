@@ -286,6 +286,8 @@ function showStage() {
   overview.classList.remove("show");
   stage.style.display = "flex";
   fit();
+  // 从概览墙 Esc 进入时 iframe 可能未加载任何页
+  if (!frame.src || frame.src === "about:blank") goTo(index);
 }
 function showOverview() {
   inOverview = true;
