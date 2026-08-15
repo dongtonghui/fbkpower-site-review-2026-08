@@ -9,12 +9,64 @@
 <link rel="stylesheet" href="../shared/tokens.css">
 <script src="../shared/lock.js"></script>
 <style>
-  .chart-legend { display: flex; gap: 28px; margin-bottom: 14px; }
-  .chart-legend .lg { display: flex; align-items: center; gap: 9px; font-family: var(--font-mono); font-size: 14px; color: var(--ink-muted); letter-spacing: 0.06em; }
-  .chart-legend .sw { width: 16px; height: 16px; display: inline-block; }
-  .sw.bar { background: var(--safety); }
-  .sw.line { background: var(--ink); height: 3px; width: 22px; }
-  .note { font-family: var(--font-mono); font-size: 12px; color: var(--ink-light); letter-spacing: 0.04em; }
+  .cols { display: grid; grid-template-columns: 1.05fr 1fr; gap: 34px; margin-top: 20px; }
+
+  /* 表格：月度行 + 周度子行 */
+  .detail-table { width: 100%; border-collapse: collapse; }
+  .detail-table th {
+    font-family: var(--font-mono);
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    text-align: left;
+    color: var(--ink-muted);
+    border-bottom: 2px solid var(--ink);
+    padding: 9px 12px;
+  }
+  .detail-table th.num, .detail-table td.num { text-align: right; font-family: var(--font-mono); }
+  .detail-table td { font-size: 17px; padding: 8px 12px; border-bottom: 1px solid var(--line); font-variant-numeric: tabular-nums; color: var(--ink); }
+  .detail-table .month-row td {
+    font-weight: 700;
+    background: var(--safety-soft);
+    border-top: 1px solid var(--line-strong);
+    font-size: 18px;
+  }
+  .detail-table .week-row td {
+    font-size: 15px;
+    color: var(--ink-muted);
+  }
+  .detail-table .week-row td:first-child { padding-left: 34px; }
+  .detail-table .week-row .wlabel { font-family: var(--font-mono); font-size: 13px; color: var(--ink-light); }
+
+  /* 趋势图 */
+  .chart-wrap { position: relative; }
+  .chart-reveal { animation: chartReveal 1.4s cubic-bezier(.22,.8,.3,1) forwards; }
+  @keyframes chartReveal {
+    from { clip-path: inset(0 100% 0 0); }
+    to { clip-path: inset(0 0% 0 0); }
+  }
+  .peak-pulse { animation: peakPulse 1.6s ease-in-out infinite; transform-box: fill-box; transform-origin: center; }
+  @keyframes peakPulse {
+    0% { transform: scale(1); opacity: 0.7; }
+    100% { transform: scale(2.4); opacity: 0; }
+  }
+  .grow-note {
+    position: absolute;
+    top: 8px; left: 14px;
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 40px;
+    color: var(--safety-dark);
+    line-height: 1;
+  }
+  .grow-note .lbl { font-family: var(--font-mono); font-size: 13px; color: var(--ink-muted); font-weight: 500; letter-spacing: 0.1em; display: block; }
+  .chart-legend { display: flex; gap: 22px; margin-bottom: 8px; }
+  .chart-legend .lg { display: flex; align-items: center; gap: 8px; font-family: var(--font-mono); font-size: 13px; color: var(--ink-muted); }
+  .chart-legend .sw { width: 18px; height: 10px; display: inline-block; border-radius: 2px; }
+  .sw.area { background: linear-gradient(180deg, rgba(255,106,0,.4), rgba(255,106,0,.05)); border: 1px solid var(--safety); }
+  .sw.dash { border-top: 2px dashed var(--safety); background: none; height: 0; }
+  .note { font-family: var(--font-mono); font-size: 12px; color: var(--ink-light); letter-spacing: 0.04em; margin-top: 6px; }
 </style>
 </head>
 <body>
@@ -24,14 +76,14 @@
     <div class="meta">Traffic · GSC Data & Trend</div>
   </div>
 
-  <div style="flex:1; padding-top:30px; display:flex; flex-direction:column;">
+  <div style="flex:1; padding-top:26px; display:flex; flex-direction:column;">
     <div class="kicker">01 · 流量趋势</div>
-    <h1 style="font-size:58px;">曝光持续增长，点击还在爬坡</h1>
+    <h1 style="font-size:54px;">曝光持续增长，点击还在爬坡</h1>
 
-    <div style="display:grid; grid-template-columns: 1.05fr 1fr; gap:40px; margin-top:26px;">
-      <!-- 数据表 -->
+    <div class="cols">
+      <!-- 左：颗粒度表格 -->
       <div>
-        <table class="data-table">
+        <table class="detail-table">
           <tr>
             <th>时段</th>
             <th class="num">点击</th>
@@ -39,103 +91,164 @@
             <th class="num">CTR</th>
             <th class="num">排名</th>
           </tr>
-          <tr>
-            <td>6月</td>
+          <tr class="month-row">
+            <td>6月（整月）</td>
             <td class="num">14</td>
             <td class="num">982</td>
             <td class="num">1.43%</td>
             <td class="num">29.2</td>
           </tr>
-          <tr>
-            <td>7月</td>
+          <tr class="month-row">
+            <td>7月（合计）</td>
             <td class="num">12</td>
             <td class="num">2,829</td>
             <td class="num">0.42%</td>
             <td class="num">23.3</td>
           </tr>
-          <tr class="hl">
-            <td>8月（至 13 日）</td>
+          <tr class="week-row">
+            <td><span class="wlabel">W27 6/30–7/6</span></td>
+            <td class="num">5</td>
+            <td class="num">465</td>
+            <td class="num">1.08%</td>
+            <td class="num">16.8</td>
+          </tr>
+          <tr class="week-row">
+            <td><span class="wlabel">W28 7/7–7/13</span></td>
+            <td class="num">2</td>
+            <td class="num">705</td>
+            <td class="num">0.28%</td>
+            <td class="num">19.2</td>
+          </tr>
+          <tr class="week-row">
+            <td><span class="wlabel">W29 7/14–7/20</span></td>
+            <td class="num">2</td>
+            <td class="num">506</td>
+            <td class="num">0.40%</td>
+            <td class="num">18.1</td>
+          </tr>
+          <tr class="week-row">
+            <td><span class="wlabel">W30 7/21–7/27</span></td>
+            <td class="num">2</td>
+            <td class="num">667</td>
+            <td class="num">0.30%</td>
+            <td class="num">26.0</td>
+          </tr>
+          <tr class="month-row">
+            <td>8月（合计·14天）</td>
             <td class="num">20</td>
             <td class="num">5,594</td>
             <td class="num">0.36%</td>
             <td class="num">19.4</td>
           </tr>
+          <tr class="week-row">
+            <td><span class="wlabel">W31 7/28–8/3</span></td>
+            <td class="num">4</td>
+            <td class="num">1,308</td>
+            <td class="num">0.31%</td>
+            <td class="num">29.7</td>
+          </tr>
+          <tr class="week-row">
+            <td><span class="wlabel">W32 8/4–8/10</span></td>
+            <td class="num">11</td>
+            <td class="num">3,261</td>
+            <td class="num">0.34%</td>
+            <td class="num">19.7</td>
+          </tr>
+          <tr class="week-row">
+            <td><span class="wlabel">W33 8/11–14·4天</span></td>
+            <td class="num">6</td>
+            <td class="num">1,573</td>
+            <td class="num">0.38%</td>
+            <td class="num">15.6</td>
+          </tr>
         </table>
         <div class="datasrc" style="margin-top:10px;">数据来源：GSC（sc-domain:fbkpower.com），截至 2026-08-13（约 2 天延迟）。</div>
-        <div class="card" style="margin-top:18px; padding:22px 28px;">
-          <h3 style="font-size:21px;">📈 关键信号</h3>
-          <p style="font-size:18px;"><b>8 月仅用 14 天，曝光 5,594 已超 7 月全月</b>（2,829）。日均曝光从 6 月 ~32 涨到 8 月 ~430，月化约 12,000+。</p>
-        </div>
       </div>
 
-      <!-- 趋势图 -->
+      <!-- 右：炫酷趋势图 -->
       <div>
         <div class="chart-legend">
-          <span class="lg"><span class="sw bar"></span>曝光 Impressions</span>
-          <span class="lg"><span class="sw line"></span>点击 Clicks（右轴）</span>
+          <span class="lg"><span class="sw area"></span>曝光（面积）</span>
+          <span class="lg"><span class="sw dash"></span>未完周（4天）</span>
         </div>
-        <svg viewBox="0 0 520 380" width="100%" height="380" style="background:var(--white); border:1px solid var(--line-strong);">
-          <!-- 网格线 -->
-          <g stroke="var(--line)" stroke-width="1">
-            <line x1="40" y1="30" x2="500" y2="30"/>
-            <line x1="40" y1="90" x2="500" y2="90"/>
-            <line x1="40" y1="150" x2="500" y2="150"/>
-            <line x1="40" y1="210" x2="500" y2="210"/>
-            <line x1="40" y1="270" x2="500" y2="270"/>
-            <line x1="40" y1="330" x2="500" y2="330"/>
-          </g>
-          <!-- 左轴刻度（曝光） -->
-          <g font-family="var(--font-mono)" font-size="11" fill="var(--ink-muted)" text-anchor="end">
-            <text x="34" y="34">6000</text>
-            <text x="34" y="94">4800</text>
-            <text x="34" y="154">3600</text>
-            <text x="34" y="214">2400</text>
-            <text x="34" y="274">1200</text>
-            <text x="34" y="334">0</text>
-          </g>
-          <!-- 曝光柱状（6月982 / 7月2829 / 8月5594） -->
-          <g>
-            <rect x="80"  y="281" width="90" height="49"  fill="var(--safety)"/>
-            <rect x="215" y="189" width="90" height="141" fill="var(--safety)"/>
-            <rect x="350" y="50"  width="90" height="280" fill="var(--safety)"/>
-          </g>
-          <!-- 曝光柱数值 -->
-          <g font-family="var(--font-mono)" font-size="13" fill="var(--ink)" text-anchor="middle">
-            <text x="125" y="273">982</text>
-            <text x="260" y="181">2,829</text>
-            <text x="395" y="42">5,594</text>
-          </g>
-          <!-- 点击折线（右轴 0-20 -> 330-30） -->
-          <polyline points="125,120 260,150 395,30"
-            fill="none" stroke="var(--ink)" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
-          <g fill="var(--ink)">
-            <circle cx="125" cy="120" r="5"/>
-            <circle cx="260" cy="150" r="5"/>
-            <circle cx="395" cy="30"  r="5"/>
-          </g>
-          <!-- 点击数值 -->
-          <g font-family="var(--font-mono)" font-size="12" fill="var(--ink)" font-weight="600" text-anchor="middle">
-            <text x="125" y="110">14</text>
-            <text x="260" y="140">12</text>
-            <text x="395" y="22">20</text>
-          </g>
-          <!-- 右轴刻度（点击） -->
-          <g font-family="var(--font-mono)" font-size="11" fill="var(--ink-muted)" text-anchor="start">
-            <text x="506" y="34">20</text>
-            <text x="506" y="94">16</text>
-            <text x="506" y="154">12</text>
-            <text x="506" y="214">8</text>
-            <text x="506" y="274">4</text>
-            <text x="506" y="334">0</text>
-          </g>
-          <!-- X 轴标签 -->
-          <g font-family="var(--font-mono)" font-size="14" fill="var(--ink)" text-anchor="middle">
-            <text x="125" y="356">6月</text>
-            <text x="260" y="356">7月</text>
-            <text x="395" y="356">8月·14天</text>
-          </g>
-        </svg>
-        <div class="note" style="margin-top:8px;">曝光（橙柱）逐月倍增，点击（墨折线）几乎贴地 —— 量级差 200+ 倍，这就是「权重不够」的直观体现。</div>
+        <div class="chart-wrap">
+          <div class="grow-note">7<span style="font-size:24px;">×</span><span class="lbl">曝光峰值增长</span></div>
+          <svg viewBox="0 0 520 400" width="100%" height="400" style="background:var(--white); border:1px solid var(--line-strong);">
+            <defs>
+              <linearGradient id="areaGrad" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="#FF6A00" stop-opacity="0.38"/>
+                <stop offset="100%" stop-color="#FF6A00" stop-opacity="0.03"/>
+              </linearGradient>
+            </defs>
+
+            <!-- 网格线 -->
+            <g stroke="var(--line)" stroke-width="1">
+              <line x1="45" y1="35" x2="495" y2="35"/>
+              <line x1="45" y1="94" x2="495" y2="94"/>
+              <line x1="45" y1="153" x2="495" y2="153"/>
+              <line x1="45" y1="212" x2="495" y2="212"/>
+              <line x1="45" y1="271" x2="495" y2="271"/>
+              <line x1="45" y1="330" x2="495" y2="330"/>
+            </g>
+            <!-- Y 轴刻度 -->
+            <g font-family="var(--font-mono)" font-size="11" fill="var(--ink-muted)" text-anchor="end">
+              <text x="39" y="39">3500</text>
+              <text x="39" y="98">2800</text>
+              <text x="39" y="157">2100</text>
+              <text x="39" y="216">1400</text>
+              <text x="39" y="275">700</text>
+              <text x="39" y="334">0</text>
+            </g>
+
+            <g class="chart-reveal">
+              <!-- 面积（W27-W32 实填 + W32-W33 半透明弱化） -->
+              <path d="M 45,291 L 120,271 L 195,287 L 270,274 L 345,220 L 420,55 L 420,330 L 45,330 Z" fill="url(#areaGrad)"/>
+              <path d="M 420,55 L 495,197 L 495,330 L 420,330 Z" fill="#FF6A00" opacity="0.06"/>
+
+              <!-- 折线（W27-W32 实线） -->
+              <polyline points="45,291 120,271 195,287 270,274 345,220 420,55"
+                fill="none" stroke="var(--safety)" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
+              <!-- W32→W33 虚线（未完周弱化） -->
+              <line x1="420" y1="55" x2="495" y2="197" stroke="var(--safety)" stroke-width="2.5" stroke-dasharray="6 6" opacity="0.55"/>
+
+              <!-- 节点 -->
+              <g fill="var(--safety)" stroke="#fff" stroke-width="1.5">
+                <circle cx="45" cy="291" r="4"/>
+                <circle cx="120" cy="271" r="4"/>
+                <circle cx="195" cy="287" r="4"/>
+                <circle cx="270" cy="274" r="4"/>
+                <circle cx="345" cy="220" r="4"/>
+              </g>
+              <!-- W33 节点（空心半透明） -->
+              <circle cx="495" cy="197" r="4.5" fill="#fff" stroke="var(--safety)" stroke-width="2.5" opacity="0.55"/>
+
+              <!-- 峰值 W32：脉冲 + 实心点 -->
+              <circle class="peak-pulse" cx="420" cy="55" r="9" fill="var(--safety)" opacity="0.5"/>
+              <circle cx="420" cy="55" r="6" fill="var(--safety)" stroke="#fff" stroke-width="2"/>
+
+              <!-- 峰值标注 -->
+              <g font-family="var(--font-mono)" font-size="12" fill="var(--safety-dark)" text-anchor="middle" font-weight="600">
+                <text x="420" y="24">▲ 峰值 3,261</text>
+              </g>
+            </g>
+
+            <!-- X 轴标签 -->
+            <g font-family="var(--font-mono)" font-size="12" fill="var(--ink)" text-anchor="middle">
+              <text x="45" y="356">W27</text>
+              <text x="120" y="356">W28</text>
+              <text x="195" y="356">W29</text>
+              <text x="270" y="356">W30</text>
+              <text x="345" y="356">W31</text>
+              <text x="420" y="356">W32</text>
+              <text x="495" y="356" fill="var(--ink-muted)">W33</text>
+            </g>
+            <!-- W33 未完周说明 -->
+            <g font-family="var(--font-mono)" font-size="10" fill="var(--ink-light)" text-anchor="middle">
+              <text x="495" y="371">4天·未完</text>
+            </g>
+          </svg>
+        </div>
+        <div class="note">曝光（面积）逐周爬升、W32 冲到峰值 3,261；点击曲线整体贴地，量级差 200+ 倍——这就是「权重不够」的直观体现。</div>
       </div>
     </div>
   </div>
