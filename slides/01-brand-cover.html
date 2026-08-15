@@ -13,58 +13,85 @@
   .logo-wrap {
     display: flex;
     justify-content: center;
-    margin-top: 46px;
+    margin-top: 42px;
   }
-  .logo-wrap img { width: 780px; height: auto; }
+  .logo-wrap img { width: 760px; height: auto; }
   .cover-title {
     font-family: var(--font-display);
     font-weight: 700;
-    font-size: 108px;
+    font-size: 104px;
     line-height: 1.02;
     letter-spacing: 0.02em;
     color: var(--ink);
-    margin-top: 52px;
+    margin-top: 46px;
     text-transform: uppercase;
   }
   .cover-title .hl { color: var(--safety-dark); }
   .cover-sub {
     font-family: var(--font-display);
     font-weight: 500;
-    font-size: 40px;
+    font-size: 38px;
     letter-spacing: 0.06em;
     color: var(--ink-muted);
     text-transform: uppercase;
-    margin-top: 22px;
+    margin-top: 18px;
+  }
+
+  /* 域名链接 */
+  .domain-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 26px;
   }
   .cover-domain {
     display: inline-flex;
     align-items: center;
     gap: 14px;
-    margin-top: 30px;
+    cursor: pointer;
     font-family: var(--font-display);
     font-weight: 700;
-    font-size: 54px;
+    font-size: 52px;
     letter-spacing: 0.05em;
     color: var(--ink);
     text-decoration: none;
     border-bottom: 4px solid var(--safety);
     padding-bottom: 4px;
-    transition: color .12s;
+    transition: color .15s, border-color .15s;
   }
-  .cover-domain:hover { color: var(--safety-dark); }
+  .cover-domain:hover { color: var(--safety-dark); border-color: var(--safety-dark); }
   .cover-domain .arrow {
     font-family: var(--font-mono);
     font-size: 26px;
     color: var(--safety);
     letter-spacing: 0;
+    transition: transform .15s;
   }
-  .cover-meta {
+  .cover-domain:hover .arrow { transform: translate(3px, -3px); }
+
+  /* 手指 */
+  .finger {
+    display: inline-block;
+    transition: transform .15s;
+  }
+  .cover-domain:hover .finger { transform: translateY(5px); }
+
+  .click-hint {
+    margin-top: 10px;
     font-family: var(--font-mono);
     font-size: 15px;
+    letter-spacing: 0.14em;
+    color: var(--safety-dark);
+    text-transform: uppercase;
+  }
+
+  .cover-meta {
+    font-family: var(--font-mono);
+    font-size: 14px;
     letter-spacing: 0.16em;
     color: var(--ink-light);
     text-transform: uppercase;
-    margin-top: 40px;
+    margin-top: 30px;
   }
 </style>
 </head>
@@ -80,12 +107,23 @@
   <div class="cover-title">把曝光，变成<span class="hl">订单</span></div>
   <div class="cover-sub">FBK Power 独立站复盘报告 · 2026.05 — 08</div>
 
-  <!-- 域名（可点击） -->
-  <a class="cover-domain" href="https://www.fbkpower.com" target="_blank">
-    www.fbkpower.com <span class="arrow">↗</span>
-  </a>
+  <!-- 域名（可点击 + 手指） -->
+  <div class="domain-wrap">
+    <a class="cover-domain" href="https://www.fbkpower.com" target="_blank">
+      <svg class="finger" viewBox="0 0 50 66" width="42" height="56" aria-hidden="true">
+        <rect x="20" y="1" width="11" height="33" rx="5.5" fill="#FF6A00"/>
+        <rect x="5" y="33" width="11" height="20" rx="5.5" fill="#E86A0A"/>
+        <rect x="20" y="33" width="11" height="20" rx="5.5" fill="#E86A0A"/>
+        <rect x="35" y="33" width="11" height="20" rx="5.5" fill="#E86A0A"/>
+        <rect x="4" y="49" width="43" height="14" rx="7" fill="#FF6A00"/>
+      </svg>
+      <span>www.fbkpower.com</span>
+      <span class="arrow">↗</span>
+    </a>
+    <div class="click-hint">点击访问官网</div>
+  </div>
 
-  <div class="hazard-divider" style="width:380px; margin:34px auto 0;"></div>
+  <div class="hazard-divider" style="width:380px; margin:28px auto 0;"></div>
 
   <div class="cover-meta">Data · Git Commits + Google Search Console</div>
 </div>
