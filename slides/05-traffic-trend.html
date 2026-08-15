@@ -26,7 +26,7 @@
 
   <div style="flex:1; padding-top:30px; display:flex; flex-direction:column;">
     <div class="kicker">03 · 流量数据</div>
-    <h1 style="font-size:60px;">曝光 12× 增长，点击还在爬坡</h1>
+    <h1 style="font-size:58px;">曝光持续增长，点击还在爬坡</h1>
 
     <div style="display:grid; grid-template-columns: 1.05fr 1fr; gap:40px; margin-top:26px;">
       <!-- 数据表 -->
@@ -40,49 +40,32 @@
             <th class="num">排名</th>
           </tr>
           <tr>
-            <td>6月（首月）</td>
+            <td>6月</td>
             <td class="num">14</td>
             <td class="num">982</td>
             <td class="num">1.43%</td>
             <td class="num">29.2</td>
           </tr>
           <tr>
-            <td>W29 · 7/14 — 20</td>
-            <td class="num">2</td>
-            <td class="num">506</td>
-            <td class="num">0.40%</td>
-            <td class="num">18.1</td>
-          </tr>
-          <tr>
-            <td>W30 · 7/21 — 27</td>
-            <td class="num">2</td>
-            <td class="num">667</td>
-            <td class="num">0.30%</td>
-            <td class="num">26.0</td>
-          </tr>
-          <tr>
-            <td>W31 · 7/28 — 8/3</td>
-            <td class="num">4</td>
-            <td class="num">1,308</td>
-            <td class="num">0.31%</td>
-            <td class="num">29.8</td>
+            <td>7月</td>
+            <td class="num">12</td>
+            <td class="num">2,829</td>
+            <td class="num">0.42%</td>
+            <td class="num">23.3</td>
           </tr>
           <tr class="hl">
-            <td>W32 · 8/4 — 10</td>
-            <td class="num">11</td>
-            <td class="num">3,261</td>
-            <td class="num">0.34%</td>
-            <td class="num">19.7</td>
-          </tr>
-          <tr>
-            <td>W33 · 8/11 — 12*</td>
-            <td class="num">4</td>
-            <td class="num">932</td>
-            <td class="num">0.43%</td>
-            <td class="num">16.6</td>
+            <td>8月（至 13 日）</td>
+            <td class="num">20</td>
+            <td class="num">5,594</td>
+            <td class="num">0.36%</td>
+            <td class="num">19.4</td>
           </tr>
         </table>
-        <div class="datasrc" style="margin-top:10px;">* W33 仅 2 天数据（8/11–8/12），GSC 约 2 天延迟。来源：GSC（sc-domain:fbkpower.com）。</div>
+        <div class="datasrc" style="margin-top:10px;">数据来源：GSC（sc-domain:fbkpower.com），截至 2026-08-13（约 2 天延迟）。</div>
+        <div class="card" style="margin-top:18px; padding:22px 28px;">
+          <h3 style="font-size:21px;">📈 关键信号</h3>
+          <p style="font-size:18px;"><b>8 月仅用 14 天，曝光 5,594 已超 7 月全月</b>（2,829）。日均曝光从 6 月 ~32 涨到 8 月 ~430，月化约 12,000+。</p>
+        </div>
       </div>
 
       <!-- 趋势图 -->
@@ -103,79 +86,62 @@
           </g>
           <!-- 左轴刻度（曝光） -->
           <g font-family="var(--font-mono)" font-size="11" fill="var(--ink-muted)" text-anchor="end">
-            <text x="34" y="34">3500</text>
-            <text x="34" y="94">2800</text>
-            <text x="34" y="154">2100</text>
-            <text x="34" y="214">1400</text>
-            <text x="34" y="274">700</text>
+            <text x="34" y="34">6000</text>
+            <text x="34" y="94">4800</text>
+            <text x="34" y="154">3600</text>
+            <text x="34" y="214">2400</text>
+            <text x="34" y="274">1200</text>
             <text x="34" y="334">0</text>
           </g>
-          <!-- 曝光柱状图 -->
+          <!-- 曝光柱状（6月982 / 7月2829 / 8月5594） -->
           <g>
-            <rect x="70"  y="300" width="44" height="30"  fill="var(--safety)"/>
-            <rect x="142" y="317" width="44" height="13"  fill="var(--safety)"/>
-            <rect x="214" y="312" width="44" height="18"  fill="var(--safety)"/>
-            <rect x="286" y="294" width="44" height="36"  fill="var(--safety)"/>
-            <rect x="358" y="240" width="44" height="90"  fill="var(--safety)"/>
-            <rect x="430" y="305" width="44" height="25"  fill="var(--safety)"/>
+            <rect x="80"  y="281" width="90" height="49"  fill="var(--safety)"/>
+            <rect x="215" y="189" width="90" height="141" fill="var(--safety)"/>
+            <rect x="350" y="50"  width="90" height="280" fill="var(--safety)"/>
           </g>
           <!-- 曝光柱数值 -->
-          <g font-family="var(--font-mono)" font-size="11" fill="var(--ink)" text-anchor="middle">
-            <text x="92"  y="294">982</text>
-            <text x="164" y="311">506</text>
-            <text x="236" y="306">667</text>
-            <text x="308" y="288">1308</text>
-            <text x="380" y="234">3261</text>
-            <text x="452" y="299">932</text>
+          <g font-family="var(--font-mono)" font-size="13" fill="var(--ink)" text-anchor="middle">
+            <text x="125" y="273">982</text>
+            <text x="260" y="181">2,829</text>
+            <text x="395" y="42">5,594</text>
           </g>
-          <!-- 点击折线（右轴 0-14 映射到 330-30） -->
-          <polyline points="92,120 164,260 236,260 308,180 380,30 452,180"
+          <!-- 点击折线（右轴 0-20 -> 330-30） -->
+          <polyline points="125,120 260,150 395,30"
             fill="none" stroke="var(--ink)" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
           <g fill="var(--ink)">
-            <circle cx="92"  cy="120" r="5"/>
-            <circle cx="164" cy="260" r="5"/>
-            <circle cx="236" cy="260" r="5"/>
-            <circle cx="308" cy="180" r="5"/>
-            <circle cx="380" cy="30"  r="5"/>
-            <circle cx="452" cy="180" r="5"/>
+            <circle cx="125" cy="120" r="5"/>
+            <circle cx="260" cy="150" r="5"/>
+            <circle cx="395" cy="30"  r="5"/>
           </g>
           <!-- 点击数值 -->
-          <g font-family="var(--font-mono)" font-size="11" fill="var(--ink)" font-weight="600" text-anchor="middle">
-            <text x="92"  y="110">14</text>
-            <text x="164" y="250">2</text>
-            <text x="236" y="250">2</text>
-            <text x="308" y="170">4</text>
-            <text x="380" y="22">11</text>
-            <text x="452" y="170">4</text>
+          <g font-family="var(--font-mono)" font-size="12" fill="var(--ink)" font-weight="600" text-anchor="middle">
+            <text x="125" y="110">14</text>
+            <text x="260" y="140">12</text>
+            <text x="395" y="22">20</text>
           </g>
           <!-- 右轴刻度（点击） -->
           <g font-family="var(--font-mono)" font-size="11" fill="var(--ink-muted)" text-anchor="start">
-            <text x="506" y="34">14</text>
-            <text x="506" y="94">11</text>
-            <text x="506" y="154">8</text>
-            <text x="506" y="214">6</text>
-            <text x="506" y="274">3</text>
+            <text x="506" y="34">20</text>
+            <text x="506" y="94">16</text>
+            <text x="506" y="154">12</text>
+            <text x="506" y="214">8</text>
+            <text x="506" y="274">4</text>
             <text x="506" y="334">0</text>
           </g>
           <!-- X 轴标签 -->
-          <g font-family="var(--font-mono)" font-size="12" fill="var(--ink)" text-anchor="middle">
-            <text x="92"  y="356">6月</text>
-            <text x="164" y="356">W29</text>
-            <text x="236" y="356">W30</text>
-            <text x="308" y="356">W31</text>
-            <text x="380" y="356">W32</text>
-            <text x="452" y="356">W33</text>
+          <g font-family="var(--font-mono)" font-size="14" fill="var(--ink)" text-anchor="middle">
+            <text x="125" y="356">6月</text>
+            <text x="260" y="356">7月</text>
+            <text x="395" y="356">8月·14天</text>
           </g>
-          <!-- 峰值标注 -->
-          <text x="380" y="218" font-family="var(--font-mono)" font-size="12" fill="var(--safety-dark)" text-anchor="middle" font-weight="600">▲ 曝光峰值</text>
         </svg>
-        <div class="note" style="margin-top:8px;">曝光（橙柱）暴涨 12 倍，点击（墨折线）几乎贴地 —— 量级差 300 倍，这就是「权重不够」的直观体现。</div>
+        <div class="note" style="margin-top:8px;">曝光（橙柱）逐月倍增，点击（墨折线）几乎贴地 —— 量级差 200+ 倍，这就是「权重不够」的直观体现。</div>
       </div>
     </div>
   </div>
 
   <div class="page-footer">
-    <div class="section">05 / 14 · Traffic</div>
+    <div class="section">05 / 11 · Traffic</div>
     <div class="pageno"><b>FBK</b> POWER · Retrospective</div>
   </div>
 </div>

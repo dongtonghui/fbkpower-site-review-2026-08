@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>09 · 工厂侧合作事项</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;500;600;700&family=Barlow:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../shared/tokens.css">
+<script src="../shared/lock.js"></script>
+<style>
+  .task-list { display: flex; flex-direction: column; gap: 22px; margin-top: 30px; }
+  .task-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 26px;
+    background: var(--white);
+    border: 1px solid var(--line-strong);
+    border-left: 6px solid var(--safety);
+    padding: 24px 30px;
+  }
+  .task-item .no {
+    flex-shrink: 0;
+    width: 52px; height: 52px;
+    display: flex; align-items: center; justify-content: center;
+    background: var(--ink);
+    color: #fff;
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 28px;
+  }
+  .task-item h3 {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 29px;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    margin-bottom: 6px;
+  }
+  .task-item p {
+    font-size: 20px;
+    line-height: 1.55;
+    color: var(--ink-soft);
+  }
+  .task-item p b { color: var(--ink); }
+</style>
+</head>
+<body>
+<div class="slide corner-brackets">
+  <div class="page-header">
+    <div class="brand">FBK<span class="dot">·</span>POWER</div>
+    <div class="meta">Factory Cooperation</div>
+  </div>
+
+  <div style="flex:1; padding-top:30px; display:flex; flex-direction:column;">
+    <div class="kicker">05 · 合作事项清单</div>
+    <h1 style="font-size:58px;">需要工厂侧支持的四件事</h1>
+    <div class="lead" style="margin-top:10px; font-size:21px;">
+      把流量转化为询盘，需要工厂侧协同，补齐以下四件事。
+    </div>
+
+    <div class="task-list">
+      <div class="task-item">
+        <div class="no">1</div>
+        <div>
+          <h3>长期合作规划</h3>
+          <p>正式讨论 <b>FBKPOWER 项目长期合作规划</b>，并提供明确的资源支持。</p>
+        </div>
+      </div>
+      <div class="task-item">
+        <div class="no">2</div>
+        <div>
+          <h3>专人对接素材需求</h3>
+          <p>提供专人对接网站素材需求，包括：<b>网站内容校对、图片及视频素材提供、撰写博客文章</b>，提升网站内容的专业性。</p>
+        </div>
+      </div>
+      <div class="task-item">
+        <div class="no">3</div>
+        <div>
+          <h3>社媒官方背书</h3>
+          <p>构建 <b>YouTube / LinkedIn 官方主页</b>，与官方网站互链，为网站提供<b>官方信任背书</b>。</p>
+        </div>
+      </div>
+      <div class="task-item">
+        <div class="no">4</div>
+        <div>
+          <h3>行业合作曝光</h3>
+          <p>与<b>行业协会或行业网站合作</b>，将 fbkpower 网站链接发布到上述网站，<b>提升曝光度</b>。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <div class="section">09 / 11 · Cooperation</div>
+    <div class="pageno"><b>FBK</b> POWER · Retrospective</div>
+  </div>
+</div>
+</body>
+</html>
