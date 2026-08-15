@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>05 · 流量数据与趋势</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;500;600;700&family=Barlow:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../shared/tokens.css">
+<script src="../shared/lock.js"></script>
+<style>
+  .chart-legend { display: flex; gap: 28px; margin-bottom: 14px; }
+  .chart-legend .lg { display: flex; align-items: center; gap: 9px; font-family: var(--font-mono); font-size: 14px; color: var(--ink-muted); letter-spacing: 0.06em; }
+  .chart-legend .sw { width: 16px; height: 16px; display: inline-block; }
+  .sw.bar { background: var(--safety); }
+  .sw.line { background: var(--ink); height: 3px; width: 22px; }
+  .note { font-family: var(--font-mono); font-size: 12px; color: var(--ink-light); letter-spacing: 0.04em; }
+</style>
+</head>
+<body>
+<div class="slide corner-brackets">
+  <div class="page-header">
+    <div class="brand">FBK<span class="dot">·</span>POWER</div>
+    <div class="meta">Traffic · GSC Data & Trend</div>
+  </div>
+
+  <div style="flex:1; padding-top:30px; display:flex; flex-direction:column;">
+    <div class="kicker">03 · 流量数据</div>
+    <h1 style="font-size:60px;">曝光 12× 增长，点击还在爬坡</h1>
+
+    <div style="display:grid; grid-template-columns: 1.05fr 1fr; gap:40px; margin-top:26px;">
+      <!-- 数据表 -->
+      <div>
+        <table class="data-table">
+          <tr>
+            <th>时段</th>
+            <th class="num">点击</th>
+            <th class="num">曝光</th>
+            <th class="num">CTR</th>
+            <th class="num">排名</th>
+          </tr>
+          <tr>
+            <td>6月（首月）</td>
+            <td class="num">14</td>
+            <td class="num">982</td>
+            <td class="num">1.43%</td>
+            <td class="num">29.2</td>
+          </tr>
+          <tr>
+            <td>W29 · 7/14 — 20</td>
+            <td class="num">2</td>
+            <td class="num">506</td>
+            <td class="num">0.40%</td>
+            <td class="num">18.1</td>
+          </tr>
+          <tr>
+            <td>W30 · 7/21 — 27</td>
+            <td class="num">2</td>
+            <td class="num">667</td>
+            <td class="num">0.30%</td>
+            <td class="num">26.0</td>
+          </tr>
+          <tr>
+            <td>W31 · 7/28 — 8/3</td>
+            <td class="num">4</td>
+            <td class="num">1,308</td>
+            <td class="num">0.31%</td>
+            <td class="num">29.8</td>
+          </tr>
+          <tr class="hl">
+            <td>W32 · 8/4 — 10</td>
+            <td class="num">11</td>
+            <td class="num">3,261</td>
+            <td class="num">0.34%</td>
+            <td class="num">19.7</td>
+          </tr>
+          <tr>
+            <td>W33 · 8/11 — 12*</td>
+            <td class="num">4</td>
+            <td class="num">932</td>
+            <td class="num">0.43%</td>
+            <td class="num">16.6</td>
+          </tr>
+        </table>
+        <div class="datasrc" style="margin-top:10px;">* W33 仅 2 天数据（8/11–8/12），GSC 约 2 天延迟。来源：GSC（sc-domain:fbkpower.com）。</div>
+      </div>
+
+      <!-- 趋势图 -->
+      <div>
+        <div class="chart-legend">
+          <span class="lg"><span class="sw bar"></span>曝光 Impressions</span>
+          <span class="lg"><span class="sw line"></span>点击 Clicks（右轴）</span>
+        </div>
+        <svg viewBox="0 0 520 380" width="100%" height="380" style="background:var(--white); border:1px solid var(--line-strong);">
+          <!-- 网格线 -->
+          <g stroke="var(--line)" stroke-width="1">
+            <line x1="40" y1="30" x2="500" y2="30"/>
+            <line x1="40" y1="90" x2="500" y2="90"/>
+            <line x1="40" y1="150" x2="500" y2="150"/>
+            <line x1="40" y1="210" x2="500" y2="210"/>
+            <line x1="40" y1="270" x2="500" y2="270"/>
+            <line x1="40" y1="330" x2="500" y2="330"/>
+          </g>
+          <!-- 左轴刻度（曝光） -->
+          <g font-family="var(--font-mono)" font-size="11" fill="var(--ink-muted)" text-anchor="end">
+            <text x="34" y="34">3500</text>
+            <text x="34" y="94">2800</text>
+            <text x="34" y="154">2100</text>
+            <text x="34" y="214">1400</text>
+            <text x="34" y="274">700</text>
+            <text x="34" y="334">0</text>
+          </g>
+          <!-- 曝光柱状图 -->
+          <g>
+            <rect x="70"  y="300" width="44" height="30"  fill="var(--safety)"/>
+            <rect x="142" y="317" width="44" height="13"  fill="var(--safety)"/>
+            <rect x="214" y="312" width="44" height="18"  fill="var(--safety)"/>
+            <rect x="286" y="294" width="44" height="36"  fill="var(--safety)"/>
+            <rect x="358" y="240" width="44" height="90"  fill="var(--safety)"/>
+            <rect x="430" y="305" width="44" height="25"  fill="var(--safety)"/>
+          </g>
+          <!-- 曝光柱数值 -->
+          <g font-family="var(--font-mono)" font-size="11" fill="var(--ink)" text-anchor="middle">
+            <text x="92"  y="294">982</text>
+            <text x="164" y="311">506</text>
+            <text x="236" y="306">667</text>
+            <text x="308" y="288">1308</text>
+            <text x="380" y="234">3261</text>
+            <text x="452" y="299">932</text>
+          </g>
+          <!-- 点击折线（右轴 0-14 映射到 330-30） -->
+          <polyline points="92,120 164,260 236,260 308,180 380,30 452,180"
+            fill="none" stroke="var(--ink)" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
+          <g fill="var(--ink)">
+            <circle cx="92"  cy="120" r="5"/>
+            <circle cx="164" cy="260" r="5"/>
+            <circle cx="236" cy="260" r="5"/>
+            <circle cx="308" cy="180" r="5"/>
+            <circle cx="380" cy="30"  r="5"/>
+            <circle cx="452" cy="180" r="5"/>
+          </g>
+          <!-- 点击数值 -->
+          <g font-family="var(--font-mono)" font-size="11" fill="var(--ink)" font-weight="600" text-anchor="middle">
+            <text x="92"  y="110">14</text>
+            <text x="164" y="250">2</text>
+            <text x="236" y="250">2</text>
+            <text x="308" y="170">4</text>
+            <text x="380" y="22">11</text>
+            <text x="452" y="170">4</text>
+          </g>
+          <!-- 右轴刻度（点击） -->
+          <g font-family="var(--font-mono)" font-size="11" fill="var(--ink-muted)" text-anchor="start">
+            <text x="506" y="34">14</text>
+            <text x="506" y="94">11</text>
+            <text x="506" y="154">8</text>
+            <text x="506" y="214">6</text>
+            <text x="506" y="274">3</text>
+            <text x="506" y="334">0</text>
+          </g>
+          <!-- X 轴标签 -->
+          <g font-family="var(--font-mono)" font-size="12" fill="var(--ink)" text-anchor="middle">
+            <text x="92"  y="356">6月</text>
+            <text x="164" y="356">W29</text>
+            <text x="236" y="356">W30</text>
+            <text x="308" y="356">W31</text>
+            <text x="380" y="356">W32</text>
+            <text x="452" y="356">W33</text>
+          </g>
+          <!-- 峰值标注 -->
+          <text x="380" y="218" font-family="var(--font-mono)" font-size="12" fill="var(--safety-dark)" text-anchor="middle" font-weight="600">▲ 曝光峰值</text>
+        </svg>
+        <div class="note" style="margin-top:8px;">曝光（橙柱）暴涨 12 倍，点击（墨折线）几乎贴地 —— 量级差 300 倍，这就是「权重不够」的直观体现。</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <div class="section">05 / 14 · Traffic</div>
+    <div class="pageno"><b>FBK</b> POWER · Retrospective</div>
+  </div>
+</div>
+</body>
+</html>
