@@ -8,47 +8,101 @@
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;500;600;700&family=Barlow:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../shared/tokens.css">
 <script src="../shared/lock.js"></script>
+<style>
+  .end-slide { position: relative; }
+  .worldmap {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 40%;
+    opacity: 0.92;
+    z-index: 0;
+  }
+  .slogan {
+    position: relative;
+    z-index: 1;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+  .slogan-box {
+    background: rgba(244, 244, 240, 0.90);
+    border: 2px solid var(--ink);
+    padding: 46px 80px 40px;
+    position: relative;
+  }
+  .slogan-box::before,
+  .slogan-box::after {
+    content: "";
+    position: absolute;
+    width: 22px; height: 22px;
+    border-color: var(--safety);
+    border-style: solid;
+  }
+  .slogan-box::before { top: -8px; left: -8px; border-width: 3px 0 0 3px; }
+  .slogan-box::after { bottom: -8px; right: -8px; border-width: 0 3px 3px 0; }
+  .slogan h1 {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 132px;
+    line-height: 1.05;
+    letter-spacing: 0.02em;
+    color: var(--ink);
+    text-transform: uppercase;
+  }
+  .slogan h1 .hl { color: var(--safety-dark); }
+  .slogan .sub {
+    font-size: 30px;
+    line-height: 1.55;
+    color: var(--ink-soft);
+    margin-top: 22px;
+    max-width: 1400px;
+  }
+  .slogan .sub b { color: var(--ink); }
+  .legend {
+    position: absolute;
+    bottom: 70px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2;
+    display: flex;
+    gap: 28px;
+    align-items: center;
+    background: rgba(20,23,26,0.88);
+    padding: 10px 26px;
+  }
+  .legend .item { display: flex; align-items: center; gap: 9px; font-family: var(--font-mono); font-size: 14px; color: #fff; letter-spacing: 0.08em; }
+  .legend .sw { width: 16px; height: 16px; display: inline-block; }
+  .sw.hl { background: var(--safety); }
+  .sw.oth { background: #E3E2DB; }
+</style>
 </head>
 <body>
-<div class="slide corner-brackets">
-  <div class="page-header">
-    <div class="brand">FBK<span class="dot">·</span>POWER</div>
-    <div class="meta">Summary · End</div>
-  </div>
+<div class="slide corner-brackets end-slide">
 
-  <div style="flex:1; display:flex; flex-direction:column; justify-content:center; padding-top:30px;">
-    <div class="kicker">Wrap Up</div>
-    <h1 style="font-size:110px; line-height:1.05;">
-      站内地基已就位<br>
-      <span class="hl">下一战：站外信号</span>
-    </h1>
+  <!-- 世界地图底图（美欧高亮） -->
+  <img class="worldmap" src="../assets/world-map.svg" alt="世界地图 · 美国与欧洲高亮">
 
-    <div class="hazard-divider" style="width:560px; margin:42px 0;"></div>
-
-    <div style="display:grid; grid-template-columns: repeat(3, 1fr); gap:36px; max-width:1600px;">
-      <div>
-        <div class="num-lg" style="font-size:64px;">210<span class="unit">+</span></div>
-        <div class="num-label">页 · 内容资产已铺好</div>
-      </div>
-      <div>
-        <div class="num-lg num-accent" style="font-size:64px;">12<span class="unit">×</span></div>
-        <div class="num-label">曝光增长 · 验证方向正确</div>
-      </div>
-      <div>
-        <div class="num-lg" style="font-size:64px;">0.3<span class="unit">%</span></div>
-        <div class="num-label">CTR · 下一阶段主攻目标</div>
-      </div>
-    </div>
-
-    <div style="margin-top:48px; display:flex; gap:30px; align-items:center;">
-      <div class="nameplate">Phase 1 — 4 已完成</div>
-      <div class="nameplate orange">Next: Off-Site + Decision Content + GA4</div>
-      <div style="flex:1"></div>
-      <div class="datasrc">FBK POWER · Retrospective 2026.05 — 08</div>
+  <!-- 口号 -->
+  <div class="slogan">
+    <div class="slogan-box">
+      <h1>需求已来，<span class="hl">临门一脚</span></h1>
+      <div class="sub">流量增长印证了全球市场的<b>强烈需求</b>——此刻，把曝光变成<b>订单</b>。</div>
     </div>
   </div>
 
-  <div class="page-footer">
+  <!-- 图例 -->
+  <div class="legend">
+    <div class="item"><span class="sw hl"></span>美国 · 欧洲 · 核心市场</div>
+    <div class="item"><span class="sw oth"></span>其他市场</div>
+  </div>
+
+  <div class="page-footer" style="left:110px; right:110px; bottom:34px; z-index:3;">
     <div class="section">11 / 11 · End</div>
     <div class="pageno"><b>FBK</b> POWER · Retrospective</div>
   </div>
