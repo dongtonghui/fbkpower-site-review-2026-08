@@ -9,40 +9,97 @@
 <link rel="stylesheet" href="../shared/tokens.css">
 <script src="../shared/lock.js"></script>
 <style>
-  .task-list { display: flex; flex-direction: column; gap: 14px; margin-top: 22px; }
+  .hl-o { color: var(--safety-dark); font-weight: 700; }
+  .cols { display: grid; grid-template-columns: 1.35fr 1fr; gap: 30px; margin-top: 22px; }
+  .task-list { display: flex; flex-direction: column; gap: 12px; }
   .task-item {
     display: flex;
     align-items: flex-start;
-    gap: 22px;
+    gap: 16px;
     background: var(--white);
     border: 1px solid var(--line-strong);
-    border-left: 6px solid var(--safety);
-    padding: 16px 28px;
+    border-left: 5px solid var(--safety);
+    padding: 13px 20px;
   }
   .task-item .no {
     flex-shrink: 0;
-    width: 46px; height: 46px;
+    width: 34px; height: 34px;
     display: flex; align-items: center; justify-content: center;
     background: var(--ink);
     color: #fff;
     font-family: var(--font-display);
     font-weight: 700;
-    font-size: 25px;
+    font-size: 19px;
   }
   .task-item h3 {
     font-family: var(--font-display);
     font-weight: 700;
-    font-size: 26px;
+    font-size: 21px;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+    margin-bottom: 3px;
+  }
+  .task-item p { font-size: 16px; line-height: 1.45; color: var(--ink-soft); }
+
+  /* 右栏谷歌广告版块 */
+  .ads-panel {
+    background: var(--white);
+    border: 2px solid var(--safety);
+    position: relative;
+    padding: 34px 30px 30px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+  .ads-panel::before {
+    content: "PAID";
+    position: absolute;
+    top: -13px; left: 24px;
+    background: var(--safety);
+    color: #fff;
+    font-family: var(--font-mono);
+    font-size: 13px;
+    letter-spacing: 0.16em;
+    padding: 4px 16px;
+  }
+  .ads-panel h3 {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 30px;
     text-transform: uppercase;
     letter-spacing: 0.03em;
-    margin-bottom: 4px;
+    margin-bottom: 8px;
   }
-  .task-item p {
-    font-size: 19px;
+  .ads-amount {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 76px;
+    line-height: 1;
+    color: var(--safety-dark);
+    font-variant-numeric: tabular-nums;
+    margin: 14px 0 6px;
+  }
+  .ads-amount .unit { font-size: 34px; color: var(--ink-muted); }
+  .ads-period {
+    font-family: var(--font-mono);
+    font-size: 14px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+    margin-bottom: 20px;
+  }
+  .ads-panel p { font-size: 18px; line-height: 1.55; color: var(--ink-soft); }
+  .ads-panel p b { color: var(--safety-dark); }
+  .ads-divider { height: 2px; background: var(--line-strong); margin: 20px 0; }
+  .ads-goal {
+    margin-top: auto;
+    background: var(--safety-soft);
+    padding: 16px 18px;
+    font-size: 16px;
     line-height: 1.5;
     color: var(--ink-soft);
   }
-  .task-item p b { color: var(--ink); }
+  .ads-goal b { color: var(--safety-dark); }
 </style>
 </head>
 <body>
@@ -54,45 +111,60 @@
 
   <div style="flex:1; padding-top:26px; display:flex; flex-direction:column;">
     <div class="kicker">09 · 合作事项清单</div>
-    <h1 style="font-size:54px;">需要工厂侧支持的五件事</h1>
+    <h1 style="font-size:54px;">需要工厂侧支持 + 付费投入</h1>
     <div class="lead" style="margin-top:8px; font-size:20px;">
-      把流量转化为询盘，需要工厂侧协同，补齐以下五件事。
+      把流量转化为询盘，需要工厂侧协同，外加付费流量放大。
     </div>
 
-    <div class="task-list">
-      <div class="task-item">
-        <div class="no">1</div>
-        <div>
-          <h3>长期合作规划</h3>
-          <p>正式讨论 <b>FBKPOWER 项目长期合作规划</b>，并提供明确的资源支持。</p>
+    <div class="cols">
+      <!-- 左栏：五件事 -->
+      <div class="task-list">
+        <div class="task-item">
+          <div class="no">1</div>
+          <div>
+            <h3>长期合作规划</h3>
+            <p>正式讨论 <span class="hl-o">FBKPOWER 项目长期合作规划</span>，并提供明确的资源支持。</p>
+          </div>
+        </div>
+        <div class="task-item">
+          <div class="no">2</div>
+          <div>
+            <h3>专人对接素材需求</h3>
+            <p>提供专人对接网站素材需求，包括：<span class="hl-o">网站内容校对、图片及视频素材提供、撰写博客文章</span>，提升网站内容的专业性。</p>
+          </div>
+        </div>
+        <div class="task-item">
+          <div class="no">3</div>
+          <div>
+            <h3>社媒官方背书</h3>
+            <p>构建 <span class="hl-o">YouTube / LinkedIn 官方主页</span>，与官方网站互链，为网站提供<span class="hl-o">官方信任背书</span>。</p>
+          </div>
+        </div>
+        <div class="task-item">
+          <div class="no">4</div>
+          <div>
+            <h3>行业合作曝光</h3>
+            <p>与<span class="hl-o">行业协会或行业网站合作</span>，将 fbkpower 网站链接发布到上述网站，<span class="hl-o">提升曝光度</span>。</p>
+          </div>
+        </div>
+        <div class="task-item">
+          <div class="no">5</div>
+          <div>
+            <h3>北美本土化案例</h3>
+            <p>在网站上建设<span class="hl-o">北美本土化案例</span>，提升访客信任感；建议纳入「<span class="hl-o">万豪充电桩供应商</span>」案例，专门介绍我们是北美万豪的供应商。</p>
+          </div>
         </div>
       </div>
-      <div class="task-item">
-        <div class="no">2</div>
-        <div>
-          <h3>专人对接素材需求</h3>
-          <p>提供专人对接网站素材需求，包括：<b>网站内容校对、图片及视频素材提供、撰写博客文章</b>，提升网站内容的专业性。</p>
-        </div>
-      </div>
-      <div class="task-item">
-        <div class="no">3</div>
-        <div>
-          <h3>社媒官方背书</h3>
-          <p>构建 <b>YouTube / LinkedIn 官方主页</b>，与官方网站互链，为网站提供<b>官方信任背书</b>。</p>
-        </div>
-      </div>
-      <div class="task-item">
-        <div class="no">4</div>
-        <div>
-          <h3>行业合作曝光</h3>
-          <p>与<b>行业协会或行业网站合作</b>，将 fbkpower 网站链接发布到上述网站，<b>提升曝光度</b>。</p>
-        </div>
-      </div>
-      <div class="task-item">
-        <div class="no">5</div>
-        <div>
-          <h3>北美本土化案例</h3>
-          <p>在网站上建设<b>北美本土化案例</b>，提升访客信任感；建议纳入「<b>万豪充电桩供应商</b>」案例，专门介绍我们是北美万豪的供应商。</p>
+
+      <!-- 右栏：谷歌广告投入 -->
+      <div class="ads-panel">
+        <h3>谷歌广告投放</h3>
+        <div class="ads-amount">¥5,000<span class="unit"> / 月</span></div>
+        <div class="ads-period">预估前期 · Google Ads</div>
+        <div class="ads-divider"></div>
+        <p>希望工厂投入<b>谷歌广告预算</b>，先跑广告看询盘情况，验证高价值关键词的转化效果。</p>
+        <div class="ads-goal">
+          <b>目标</b>：用付费流量快速验证「哪些词能带来真询盘」，再反哺 SEO 关键词策略，加速把曝光转化为订单。
         </div>
       </div>
     </div>
